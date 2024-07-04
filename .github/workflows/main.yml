@@ -31,10 +31,10 @@ jobs:
 
       - name: 업로드 보안 취약성 리포트로 작성
         uses: github/codeql-action/upload-sarif@v3
-        #if: success() || failure()
+        if: success() || failure()
         with:
           # Path to SARIF file relative to the root of the repository
-          sarif_file: results.json
+          sarif_file: results.sarif
           # Optional category for the results
           # Used to differentiate multiple results for one commit
           category: my-analysis-tool
