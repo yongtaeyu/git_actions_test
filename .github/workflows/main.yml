@@ -12,4 +12,12 @@ jobs:
     steps:
       - name: 소스 체크 아웃
         uses: actions/checkout@v3
+      - name: java 런타임 설치
+        uses: actions/setup-java@3
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: gradle
+
+
         
