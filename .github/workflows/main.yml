@@ -9,3 +9,7 @@ jobs:
     permissions:
       contents: read
       security-events: write
+    steps:
+      - name: 소스 체크 아웃
+        uses: actions/checkout@v3
+        
