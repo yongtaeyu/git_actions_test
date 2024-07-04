@@ -12,12 +12,14 @@ jobs:
     steps:
       - name: 소스 체크 아웃
         uses: actions/checkout@v3
+
       - name: java 런타임 설치
         uses: actions/setup-java@v3
         with:
           distribution: temurin
           java-version: 17
           cache: gradle
+
       - name: 그라이프를 사용해 코드 스캔
         uses: anchore/scan-action@v3
         id: scan
@@ -26,11 +28,13 @@ jobs:
           fail-build: false
           severity-cutoff: high
           acs-report-enable: true
+
       - name: 업로드 보안 취약성 리포트로 작성
         uses: github/codeql-action/upload-sarif@v2
         if: success() || failure()
         with:
           sarif_file: ${{steps.scan.outputs.sarif}}
+
       - name: 빌드 unit test 그리고 통합 테스트
         run: |
           chomd +x gradlew
