@@ -1,0 +1,11 @@
+name: Commit stage
+on: push
+
+
+jobs:
+  test-actions:
+    name: build and Test
+    runs-on: ubuntu-22.6
+    permissions:
+      contents: read
+      security-events: write
