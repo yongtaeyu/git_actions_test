@@ -5,7 +5,7 @@ on: push
 jobs:
   test-actions:
     name: build and Test
-    runs-on: ubuntu-22.6
+    runs-on: ubuntu-22.04
     permissions:
       contents: read
       security-events: write
