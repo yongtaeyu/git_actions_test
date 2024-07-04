@@ -33,7 +33,11 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         if: success() || failure()
         with:
+          # Path to SARIF file relative to the root of the repository
           sarif_file: results.sarif
+          # Optional category for the results
+          # Used to differentiate multiple results for one commit
+          category: my-analysis-tool
 
       - name: 빌드 unit test 그리고 통합 테스트
         run: |
