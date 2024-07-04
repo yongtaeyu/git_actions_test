@@ -22,10 +22,19 @@ jobs:
         uses: anchore/scan-action@v3
         id: scan
         with:
-          path: "{{ github.workspace}}"
+          path: "{{github.workspace}}"
           fail-build: false
           severity-cutoff: high
           acs-report-enable: true
-
+      - name: 업로드 보안 취약성 리포트로 작성
+        uses: github/codeql-action/upload-sarif@v2
+        if: success() || failure()
+        with:
+          sarif_file: ${{steps.scan.outputs.sarif}}
+      - name: 빌드 unit test 그리고 통합 테스트
+        run: |
+          chomd +x gradlew
+          ./gradlew build        
+          
 
         
